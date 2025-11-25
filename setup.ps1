@@ -2,6 +2,18 @@
 
 Write-Host "Starting setup script for printer service..."
 
+# Clone the public repo
+Write-Host "Cloning the printer-service repository..."
+$repoUrl = "https://github.com/0xSaurabhx/printer-service"
+$repoFolder = "printer-service"
+if (!(Test-Path $repoFolder)) {
+    git clone $repoUrl $repoFolder
+    Write-Host "Repository cloned successfully."
+} else {
+    Write-Host "Repository folder already exists. Skipping clone."
+}
+Set-Location $repoFolder
+
 # Check if Node.js is installed
 if (!(Get-Command node -ErrorAction SilentlyContinue)) {
     Write-Host "Node.js not found. Installing Node.js..."
